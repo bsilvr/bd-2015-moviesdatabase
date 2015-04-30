@@ -10,29 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Projecto_BD_WPF
 {
     /// <summary>
-    /// Interaction logic for AddPage.xaml
+    /// Interaction logic for AddMovies.xaml
     /// </summary>
-    public partial class AddPage : Page
+    public partial class AddMovies : Page
     {
-        public AddPage()
+        public AddMovies()
         {
             InitializeComponent();
-        }
-
-        private void goto_addMovie()
-        {
-            AddMovies addMovie = new AddMovies();
-            this.NavigationService.Navigate(addMovie);
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            goto_addMovie();
         }
     }
 }
