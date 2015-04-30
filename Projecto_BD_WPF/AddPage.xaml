@@ -1,0 +1,21 @@
+﻿<Page x:Class="Projecto_BD_WPF.AddPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddPage" Height="350" Width="525" Background="LightGray">
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="300" Margin="10,12,0,0" VerticalAlignment="Top" Width="497" Grid.RowSpan="7" Grid.ColumnSpan="7">
+            
+            <Button Content="Movies" HorizontalAlignment="Left" Margin="85,166,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Releases" HorizontalAlignment="Left" Margin="350,130,0,0" VerticalAlignment="Top" Width="75"/>
+            <Label Content="What do you want to add?" FontSize="21" HorizontalAlignment="Left" Margin="112,21,0,0" VerticalAlignment="Top" Width="291" RenderTransformOrigin="0.5,0.5"/>
+            <Button Content="Actors" HorizontalAlignment="Left" Margin="85,130,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Studios" HorizontalAlignment="Left" Margin="213,130,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Users" HorizontalAlignment="Left" Margin="85,203,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Writers" HorizontalAlignment="Left" Margin="350,166,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Trailers" HorizontalAlignment="Left" Margin="213,166,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Reviews" HorizontalAlignment="Left" Margin="350,203,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Award" HorizontalAlignment="Left" Margin="213,203,0,0" VerticalAlignment="Top" Width="75"/>
+
+        </Grid>
+    </Grid>
+</Page>
