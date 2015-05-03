@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+
 
 namespace Projecto_BD_WPF
 {
@@ -20,9 +22,268 @@ namespace Projecto_BD_WPF
     /// </summary>
     public partial class AddMovies : Page
     {
+        SqlConnection cnn;
+
         public AddMovies()
         {
             InitializeComponent();
+
+            string connetionString = "Data Source=tcp: 193.136.175.33\\SQLSERVER2012,8293;Initial Catalog=p5g1;User ID=p5g1;Password=portugal";
+            cnn = new SqlConnection(connetionString);
+            try
+            {
+                cnn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can not open connection ! ");
+            }
+
+            string getActorsQuery = "SELECT ssn, name FROM movies.actor";
+
+            complete_list_box(getActorsQuery, add_movie_actors);
+
+            string getWritersQuery = "SELECT ssn, name FROM movies.writer";
+
+            complete_list_box(getWritersQuery, add_movie_writers);
+
+            string getGenresQuery = "SELECT name FROM movies.genre";
+
+            complete_list_box(getGenresQuery, genre_listbox);
+
+            string getDirectorsQuery = "SELECT ssn, name FROM movies.director";
+
+            complete_combo_box(getDirectorsQuery, directors_combo_box);
+
+            string getStudiosQuery = "SELECT id, name FROM movies.studio";
+
+            complete_combo_box(getStudiosQuery, studios_combo_box);
+        }
+
+        private void complete_list_box(string query, ListBox listbox) 
+        {
+            SqlCommand command = new SqlCommand(query, cnn);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                int count = reader.FieldCount;
+                while (reader.Read())
+                {
+                    string item = reader.GetValue(0).ToString();
+
+                    for (int i = 1; i < count; i++)
+                    {
+                        item += " - " + reader.GetValue(1).ToString();
+                    }
+
+                    CheckBox checkbox = new CheckBox();
+                    checkbox.Content = item;
+
+                    listbox.Items.Add(checkbox);
+                }
+            }
+        }
+
+        private void complete_combo_box(string query, ComboBox combobox) 
+        {
+            SqlCommand command = new SqlCommand(query, cnn);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                int count = reader.FieldCount;
+                while (reader.Read())
+                {
+                    string item = reader.GetValue(0).ToString();
+
+                    for (int i = 1; i < count; i++)
+                    {
+                        item += " - " + reader.GetValue(1).ToString();
+                    }
+
+                    combobox.Items.Add(item);
+                }
+            }
+        }
+
+        private void add_movie_button_Click(object sender, RoutedEventArgs e)
+        {
+            string insertMovie = "INSERT into movies.movie VALUES (@id, @duration, @description, @age_restriction, @rating, @studio_id, @director_ssn)";
+            string insertActorsMovie = "INSERT into movies.performed_by VALUES (@movie_id, @actor_ssn)";
+            string insertWritesMovie = "INSERT into movies.written_by VALUES (@movie_id, @writer_ssn)";
+            string insertGenres = "INSERT into movies.genre VALUES (@movie_id, @genre)";
+
+            Movie m = new Movie();
+
+            char[] d = { ':', '-' };
+            try
+            {
+                m.movieId = Convert.ToInt32(movie_id.Text);
+            }
+            catch (FormatException) 
+            {
+                MessageBox.Show("Argument Movie Id takes integers only");
+                return;
+            }
+            
+            string[] time = duration.Text.Split(d);
+            try
+            {
+                m.duration = new TimeSpan(Convert.ToInt32(time[0]), Convert.ToInt32(time[1]), Convert.ToInt32(time[2]));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Argument Duration takes 3 integers \nFormat: HH:MM:SS");
+                return;
+            }
+
+            if (description.Text.Length > 500)
+            {
+                MessageBox.Show("description is too big");
+                return;
+            }
+            else
+                m.description = description.Text;
+
+            if (age_restriction.Text == "") 
+            {
+                MessageBox.Show("Please select an Age Restriction");
+                return;
+            }
+            else
+                m.age_restriction = age_restriction.Text;
+
+            try
+            {
+                m.rating = Convert.ToInt32(rating.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Argument Rating takes integers only");
+                return;
+            }
+
+            if (studios_combo_box.Text == "")
+            {
+                MessageBox.Show("Please select a Studio");
+                return;
+            }
+            else 
+            {
+                m.studio_id = Convert.ToInt32(studios_combo_box.Text.Split(d)[0]); 
+            }
+
+            if (directors_combo_box.Text == "")
+            {
+                MessageBox.Show("Please select a Director");
+                return;
+            }
+            else
+            {
+                m.director_ssn = Convert.ToInt32(directors_combo_box.Text.Split(d)[0]);
+            }
+
+            
+            SqlCommand insertQuery = new SqlCommand(insertMovie, cnn);
+
+            insertQuery.Parameters.AddWithValue("@id", m.movieId);
+            insertQuery.Parameters.AddWithValue("@duration", m.duration.ToString(@"hh\:mm\:ss"));
+            insertQuery.Parameters.AddWithValue("@description", m.description);
+            insertQuery.Parameters.AddWithValue("@age_restriction", m.age_restriction);
+            insertQuery.Parameters.AddWithValue("@rating", m.rating);
+            insertQuery.Parameters.AddWithValue("@studio_id", m.studio_id);
+            insertQuery.Parameters.AddWithValue("@director_ssn", m.director_ssn);
+
+            try
+            {
+                insertQuery.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("Error on inserting Movie to database");
+                return;
+            }
+
+            //insert Genres
+            foreach (CheckBox s in genre_listbox.Items)
+            {
+                SqlCommand insertGenreQuery = new SqlCommand(insertGenres, cnn);
+                if (s.IsChecked.HasValue && s.IsChecked.Value)
+                {
+                    insertGenreQuery.Parameters.AddWithValue("@movie_id", m.movieId);
+                    insertGenreQuery.Parameters.AddWithValue("@genre", s.Content.ToString());
+
+                    try
+                    {
+                        insertGenreQuery.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error on inserting Genre to database");
+                        return;
+                    }
+                }
+            }
+
+            foreach (CheckBox s in add_movie_actors.Items)
+            {
+                SqlCommand insertPerformedByQuery = new SqlCommand(insertActorsMovie, cnn);
+                if (s.IsChecked.HasValue && s.IsChecked.Value)
+                {
+                    insertPerformedByQuery.Parameters.AddWithValue("@movie_id", m.movieId);
+                    insertPerformedByQuery.Parameters.AddWithValue("@actor_ssn", s.Content.ToString().Split(d)[0]);
+
+                    try
+                    {
+                        insertPerformedByQuery.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error on Associating actors to movie to database");
+                        return;
+                    }
+                }
+            }
+
+            foreach (CheckBox s in add_movie_writers.Items)
+            {
+                SqlCommand insertWrittenByQuery = new SqlCommand(insertWritesMovie, cnn);
+                if (s.IsChecked.HasValue && s.IsChecked.Value)
+                {
+                    insertWrittenByQuery.Parameters.AddWithValue("@movie_id", m.movieId);
+                    insertWrittenByQuery.Parameters.AddWithValue("@writer_ssn", s.Content.ToString().Split(d)[0]);
+
+                    try
+                    {
+                        insertWrittenByQuery.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error on Associating actors to movie to database");
+                        return;
+                    }
+                }
+            }
+
+            cnn.Close();
+            AddPage add = new AddPage();
+            this.NavigationService.Navigate(add);
+        }
+
+        private void cancel_add_movie_button_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "This will discard all inputed data";
+            string caption = "Confirm?";
+            MessageBoxButton buttons = MessageBoxButton.OKCancel;
+            // Show message box
+            MessageBoxResult result = MessageBox.Show(message, caption, buttons);
+
+
+            if (result == MessageBoxResult.OK)
+            {
+                cnn.Close();
+                AddPage add = new AddPage();
+                this.NavigationService.Navigate(add);
+            }
         }
     }
 }

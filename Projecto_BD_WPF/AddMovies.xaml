@@ -15,7 +15,7 @@
         <Label Content="Age Restriction: " HorizontalAlignment="Left" Margin="128,287,0,0" VerticalAlignment="Top"/>
         <Label Content="Rating: " HorizontalAlignment="Left" Margin="174,335,0,0" VerticalAlignment="Top"/>
         <TextBox Name="movie_id" HorizontalAlignment="Left" Height="23" Margin="241,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265"/>
-        <TextBox Name="duration" HorizontalAlignment="Left" Height="23" Margin="241,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265"/>
+        <TextBox Name="duration" HorizontalAlignment="Left" Height="23" Margin="241,178,0,0" TextWrapping="Wrap" Text="hh:mm:ss" VerticalAlignment="Top" Width="265"/>
         <TextBox Name="rating" HorizontalAlignment="Left" Height="23" Margin="241,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="description" HorizontalAlignment="Left" Height="54" Margin="241,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265"/>
         <ComboBox Name="age_restriction" HorizontalAlignment="Left" Margin="241,291,0,0" VerticalAlignment="Top" Width="120">
@@ -33,10 +33,14 @@
 
         </ListBox>
         <Label Content="Writers: " HorizontalAlignment="Left" Margin="661,232,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="722,339,0,0" VerticalAlignment="Top" Width="216"/>
+        <ComboBox Name="directors_combo_box" HorizontalAlignment="Left" Margin="722,339,0,0" VerticalAlignment="Top" Width="216"/>
         <Label Content="Director: " HorizontalAlignment="Left" Margin="657,339,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,0.538"/>
-        <Button Name="add_movie_button" Content="Add" HorizontalAlignment="Left" Margin="846,443,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
-        <Button Name="cancel_add_movie_button" Content="Cancel" HorizontalAlignment="Left" Margin="712,443,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
+        <Button Name="add_movie_button" Click="add_movie_button_Click" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
+        <Button Name="cancel_add_movie_button" Click="cancel_add_movie_button_Click" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
+        <Label Content="Genre: " HorizontalAlignment="Left" Margin="176,386,0,0" VerticalAlignment="Top"/>
+        <ListBox Name="genre_listbox" HorizontalAlignment="Left" Height="86" Margin="241,386,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Studio: " HorizontalAlignment="Left" Margin="665,386,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="studios_combo_box" HorizontalAlignment="Left" Margin="722,386,0,0" VerticalAlignment="Top" Width="216"/>
 
 
 
