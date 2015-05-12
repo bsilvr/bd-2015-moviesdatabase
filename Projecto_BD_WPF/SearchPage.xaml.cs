@@ -23,5 +23,11 @@ namespace Projecto_BD_WPF
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SearchMovies searchMovie = new SearchMovies();
+            this.NavigationService.Navigate(searchMovie);
+        }
     }
 }

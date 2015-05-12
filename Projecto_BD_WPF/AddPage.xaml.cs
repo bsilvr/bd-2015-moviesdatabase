@@ -41,5 +41,17 @@ namespace Projecto_BD_WPF
             AddStudios addStudio = new AddStudios();
             this.NavigationService.Navigate(addStudio);
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            AddReleases addRelease = new AddReleases();
+            this.NavigationService.Navigate(addRelease);
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            AddTrailer addTrailer = new AddTrailer();
+            this.NavigationService.Navigate(addTrailer);
+        }
     }
 }

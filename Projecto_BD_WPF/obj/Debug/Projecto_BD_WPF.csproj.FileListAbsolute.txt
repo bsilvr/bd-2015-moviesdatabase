@@ -61,3 +61,11 @@ W:\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projec
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\Projecto_BD_WPF.csproj.GenerateResource.Cache
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddActors.baml
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddActors.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddReleases.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddStudios.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddTrailer.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchMovies.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddReleases.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddStudios.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddTrailer.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchMovies.g.cs

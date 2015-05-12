@@ -68,7 +68,19 @@
     <Compile Include="AddMovies.xaml.cs">
       <DependentUpon>AddMovies.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddReleases.xaml.cs">
+      <DependentUpon>AddReleases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddStudios.xaml.cs">
+      <DependentUpon>AddStudios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddTrailer.xaml.cs">
+      <DependentUpon>AddTrailer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Movie.cs" />
+    <Compile Include="SearchMovies.xaml.cs">
+      <DependentUpon>SearchMovies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -81,6 +93,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddReleases.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStudios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTrailer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +130,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SearchMovies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
