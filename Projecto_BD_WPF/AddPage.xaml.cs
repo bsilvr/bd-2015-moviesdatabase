@@ -24,15 +24,22 @@ namespace Projecto_BD_WPF
             InitializeComponent();
         }
 
-        private void goto_addMovie()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddMovies addMovie = new AddMovies();
             this.NavigationService.Navigate(addMovie);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            goto_addMovie();
+            AddActors addActor = new AddActors();
+            this.NavigationService.Navigate(addActor);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            AddStudios addStudio = new AddStudios();
+            this.NavigationService.Navigate(addStudio);
         }
     }
 }
