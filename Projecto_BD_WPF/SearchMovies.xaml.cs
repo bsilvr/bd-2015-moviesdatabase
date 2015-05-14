@@ -38,7 +38,7 @@ namespace Projecto_BD_WPF
                 MessageBox.Show("Can not open connection ! ");
             }
 
-            LoadData("SELECT * from movies.GetMovies()");
+            LoadData("SELECT * from movies.udf_GetMovies()");
         }
 
         private void LoadData(string query)

@@ -39,23 +39,23 @@ namespace Projecto_BD_WPF
                 MessageBox.Show("Can not open connection ! ");
             }
 
-            string getActorsQuery = "SELECT ssn, name FROM movies.actor";
+            string getActorsQuery = "SELECT ssn, name FROM movies.udf_Actors()";
 
             complete_list_box(getActorsQuery, add_movie_actors);
 
-            string getWritersQuery = "SELECT ssn, name FROM movies.writer";
+            string getWritersQuery = "SELECT ssn, name FROM movies.udf_Writers()";
 
             complete_list_box(getWritersQuery, add_movie_writers);
 
-            string getGenresQuery = "SELECT name FROM movies.genre";
+            string getGenresQuery = "SELECT * FROM movies.udf_UniqueGenres()";
 
             complete_list_box(getGenresQuery, genre_listbox);
 
-            string getDirectorsQuery = "SELECT ssn, name FROM movies.director";
+            string getDirectorsQuery = "SELECT ssn, name FROM movies.udf_Directors()";
 
             complete_combo_box(getDirectorsQuery, directors_combo_box);
 
-            string getStudiosQuery = "SELECT id, name FROM movies.studio";
+            string getStudiosQuery = "SELECT id, name FROM movies.udf_studios()";
 
             complete_combo_box(getStudiosQuery, studios_combo_box);
         }
@@ -73,7 +73,7 @@ namespace Projecto_BD_WPF
 
                     for (int i = 1; i < count; i++)
                     {
-                        item += " - " + reader.GetValue(1).ToString();
+                        item += " - " + reader.GetValue(i).ToString();
                     }
 
                     CheckBox checkbox = new CheckBox();
@@ -97,7 +97,7 @@ namespace Projecto_BD_WPF
 
                     for (int i = 1; i < count; i++)
                     {
-                        item += " - " + reader.GetValue(1).ToString();
+                        item += " - " + reader.GetValue(i).ToString();
                     }
 
                     combobox.Items.Add(item);
