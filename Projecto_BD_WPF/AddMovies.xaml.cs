@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
-
+using System.Data;
 
 namespace Projecto_BD_WPF
 {
@@ -107,10 +107,10 @@ namespace Projecto_BD_WPF
 
         private void add_movie_button_Click(object sender, RoutedEventArgs e)
         {
-            string insertMovie = "INSERT into movies.movie VALUES (@id, @duration, @description, @age_restriction, @rating, @studio_id, @director_ssn)";
+            string insertMovie = "movies.sp_AddMovie";
             string insertActorsMovie = "INSERT into movies.performed_by VALUES (@movie_id, @actor_ssn)";
             string insertWritesMovie = "INSERT into movies.written_by VALUES (@movie_id, @writer_ssn)";
-            string insertGenres = "INSERT into movies.genre VALUES (@movie_id, @genre)";
+            //string insertGenres = "INSERT into movies.genre VALUES (@movie_id, @genre)";
 
             Movie m = new Movie();
 
@@ -184,6 +184,22 @@ namespace Projecto_BD_WPF
 
             
             SqlCommand insertQuery = new SqlCommand(insertMovie, cnn);
+            insertQuery.CommandType = CommandType.StoredProcedure;
+
+            DataTable genres = new DataTable();
+            genres.Clear();
+            genres.Columns.Add("id");
+            genres.Columns.Add("genre");
+            foreach (CheckBox s in genre_listbox.Items)
+            {
+                if (s.IsChecked.HasValue && s.IsChecked.Value)
+                {
+                    DataRow row = genres.NewRow();
+                    row["id"] = m.movieId;
+                    row["genre"] = s.Content.ToString();
+                    genres.Rows.Add(row);
+                }
+            }
 
             insertQuery.Parameters.AddWithValue("@id", m.movieId);
             insertQuery.Parameters.AddWithValue("@duration", m.duration.ToString(@"hh\:mm\:ss"));
@@ -192,6 +208,9 @@ namespace Projecto_BD_WPF
             insertQuery.Parameters.AddWithValue("@rating", m.rating);
             insertQuery.Parameters.AddWithValue("@studio_id", m.studio_id);
             insertQuery.Parameters.AddWithValue("@director_ssn", m.director_ssn);
+            SqlParameter param = insertQuery.Parameters.AddWithValue("@Genre", genres);
+            param.SqlDbType = SqlDbType.Structured;
+            param.TypeName = "movies.genrelist";
 
             try
             {
@@ -203,6 +222,7 @@ namespace Projecto_BD_WPF
                 return;
             }
 
+            /*
             //insert Genres
             foreach (CheckBox s in genre_listbox.Items)
             {
@@ -223,6 +243,7 @@ namespace Projecto_BD_WPF
                     }
                 }
             }
+             */
 
             foreach (CheckBox s in add_movie_actors.Items)
             {
