@@ -108,9 +108,6 @@ namespace Projecto_BD_WPF
         private void add_movie_button_Click(object sender, RoutedEventArgs e)
         {
             string insertMovie = "movies.sp_AddMovie";
-            string insertActorsMovie = "INSERT into movies.performed_by VALUES (@movie_id, @actor_ssn)";
-            string insertWritesMovie = "INSERT into movies.written_by VALUES (@movie_id, @writer_ssn)";
-            //string insertGenres = "INSERT into movies.genre VALUES (@movie_id, @genre)";
 
             Movie m = new Movie();
 
@@ -188,16 +185,40 @@ namespace Projecto_BD_WPF
 
             DataTable genres = new DataTable();
             genres.Clear();
-            genres.Columns.Add("id");
             genres.Columns.Add("genre");
             foreach (CheckBox s in genre_listbox.Items)
             {
                 if (s.IsChecked.HasValue && s.IsChecked.Value)
                 {
                     DataRow row = genres.NewRow();
-                    row["id"] = m.movieId;
                     row["genre"] = s.Content.ToString();
                     genres.Rows.Add(row);
+                }
+            }
+
+            DataTable actors = new DataTable();
+            actors.Clear();
+            actors.Columns.Add("ssn");
+            foreach (CheckBox s in add_movie_actors.Items)
+            {
+                if (s.IsChecked.HasValue && s.IsChecked.Value)
+                {
+                    DataRow row = actors.NewRow();
+                    row["ssn"] = s.Content.ToString().Split(d)[0];
+                    actors.Rows.Add(row);
+                }
+            }
+
+            DataTable writers = new DataTable();
+            writers.Clear();
+            writers.Columns.Add("ssn");
+            foreach (CheckBox s in add_movie_writers.Items)
+            {
+                if (s.IsChecked.HasValue && s.IsChecked.Value)
+                {
+                    DataRow row = writers.NewRow();
+                    row["ssn"] = s.Content.ToString().Split(d)[0];
+                    writers.Rows.Add(row);
                 }
             }
 
@@ -208,9 +229,15 @@ namespace Projecto_BD_WPF
             insertQuery.Parameters.AddWithValue("@rating", m.rating);
             insertQuery.Parameters.AddWithValue("@studio_id", m.studio_id);
             insertQuery.Parameters.AddWithValue("@director_ssn", m.director_ssn);
-            SqlParameter param = insertQuery.Parameters.AddWithValue("@Genre", genres);
-            param.SqlDbType = SqlDbType.Structured;
-            param.TypeName = "movies.genrelist";
+            SqlParameter param_genre = insertQuery.Parameters.AddWithValue("@Genre", genres);
+            param_genre.SqlDbType = SqlDbType.Structured;
+            param_genre.TypeName = "movies.genrelist";
+            SqlParameter param_actors = insertQuery.Parameters.AddWithValue("@Actors", actors);
+            param_actors.SqlDbType = SqlDbType.Structured;
+            param_actors.TypeName = "movies.actorlist";
+            SqlParameter param_writers = insertQuery.Parameters.AddWithValue("@Writers", writers);
+            param_writers.SqlDbType = SqlDbType.Structured;
+            param_writers.TypeName = "movies.writerlist";
 
             try
             {
@@ -220,69 +247,6 @@ namespace Projecto_BD_WPF
             {
                 MessageBox.Show("Error on inserting Movie to database");
                 return;
-            }
-
-            /*
-            //insert Genres
-            foreach (CheckBox s in genre_listbox.Items)
-            {
-                SqlCommand insertGenreQuery = new SqlCommand(insertGenres, cnn);
-                if (s.IsChecked.HasValue && s.IsChecked.Value)
-                {
-                    insertGenreQuery.Parameters.AddWithValue("@movie_id", m.movieId);
-                    insertGenreQuery.Parameters.AddWithValue("@genre", s.Content.ToString());
-
-                    try
-                    {
-                        insertGenreQuery.ExecuteNonQuery();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error on inserting Genre to database");
-                        return;
-                    }
-                }
-            }
-             */
-
-            foreach (CheckBox s in add_movie_actors.Items)
-            {
-                SqlCommand insertPerformedByQuery = new SqlCommand(insertActorsMovie, cnn);
-                if (s.IsChecked.HasValue && s.IsChecked.Value)
-                {
-                    insertPerformedByQuery.Parameters.AddWithValue("@movie_id", m.movieId);
-                    insertPerformedByQuery.Parameters.AddWithValue("@actor_ssn", s.Content.ToString().Split(d)[0]);
-
-                    try
-                    {
-                        insertPerformedByQuery.ExecuteNonQuery();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error on Associating actors to movie to database");
-                        return;
-                    }
-                }
-            }
-
-            foreach (CheckBox s in add_movie_writers.Items)
-            {
-                SqlCommand insertWrittenByQuery = new SqlCommand(insertWritesMovie, cnn);
-                if (s.IsChecked.HasValue && s.IsChecked.Value)
-                {
-                    insertWrittenByQuery.Parameters.AddWithValue("@movie_id", m.movieId);
-                    insertWrittenByQuery.Parameters.AddWithValue("@writer_ssn", s.Content.ToString().Split(d)[0]);
-
-                    try
-                    {
-                        insertWrittenByQuery.ExecuteNonQuery();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error on Associating actors to movie to database");
-                        return;
-                    }
-                }
             }
 
             cnn.Close();
@@ -305,6 +269,17 @@ namespace Projecto_BD_WPF
                 AddPage add = new AddPage();
                 this.NavigationService.Navigate(add);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkbox = new CheckBox();
+            checkbox.Content = addNewGenres.Text;
+            addNewGenres.Text = "";
+
+            checkbox.IsChecked = true;
+
+            genre_listbox.Items.Add(checkbox);
         }
     }
 }

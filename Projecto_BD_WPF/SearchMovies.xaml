@@ -19,18 +19,25 @@
         <TextBox Name="title" HorizontalAlignment="Left" Height="23" Margin="142,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
         <TextBox Name="Country" HorizontalAlignment="Left" Height="23" Margin="142,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
         <TextBox Name="Year" HorizontalAlignment="Left" Height="23" Margin="142,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
-        <TextBox Name="age_restriction" HorizontalAlignment="Left" Height="23" Margin="142,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
 
+        <ComboBox Name="age_restriction" HorizontalAlignment="Left" Margin="142,255,0,0" VerticalAlignment="Top" Width="204">
+            <ComboBoxItem Content="G"/>
+            <ComboBoxItem Content="PG"/>
+            <ComboBoxItem Content="PG-13"/>
+            <ComboBoxItem Content="R"/>
+            <ComboBoxItem Content="NC-17"/>
+        </ComboBox>
+        
         <ComboBox Name="studio" HorizontalAlignment="Left" Margin="142,298,0,0" VerticalAlignment="Top" Width="204"/>
 
-        <ListBox Name="actors" HorizontalAlignment="Left" Height="100" Margin="142,334,0,0" VerticalAlignment="Top" Width="204"/>
+        <ListBox Name="actors_combo" HorizontalAlignment="Left" Height="100" Margin="142,334,0,0" VerticalAlignment="Top" Width="204"/>
 
         <DataGrid Name="search_result" IsReadOnly="True" HorizontalAlignment="Left" Margin="365,125,0,0" VerticalAlignment="Top" Height="343" Width="601">
 
         </DataGrid>
 
-        <Button Name="search" Content="Search" HorizontalAlignment="Left" Margin="142,448,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="clear" Content="Clear" HorizontalAlignment="Left" Margin="271,448,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="search" Click="search_Click" Content="Search" HorizontalAlignment="Left" Margin="142,448,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="clear" Click="clear_Click" Content="Clear" HorizontalAlignment="Left" Margin="271,448,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Page>
