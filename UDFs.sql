@@ -61,3 +61,28 @@ AS
 		FROM movies.studio
 	);
 go
+
+go
+CREATE FUNCTION movies.udf_UniqueLocations () RETURNS table
+AS
+	RETURN 
+	(
+		SELECT distinct location
+		FROM movies.locations
+	);
+go
+
+go
+CREATE FUNCTION movies.udf_movieIdsNames () RETURNS table
+AS
+	RETURN 
+	(
+		SELECT movies.movie.id, title
+		FROM movies.movie join movies.release on movies.movie.id = movie_id
+		WHERE country = 'USA'
+	);
+go
+
+drop function movies.udf_movieIdsNames;
+
+select * from movies.udf_movieIdsNames();

@@ -18,9 +18,16 @@ AS TABLE
 	ssn int
 );
 
+CREATE TYPE movies.locationslist
+AS TABLE
+(
+	location varchar(50)
+);
+
 drop type movies.genrelist;
 drop type movies.actorlist;
 drop type movies.writerlist;
+drop type movies.locationslist;
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -46,42 +53,42 @@ BEGIN
 	INSERT into movies.movie VALUES (@id, @duration, @description, @age_restriction, @rating, @studio_id, @director_ssn);
 	
 	declare @tmp varchar(20);
-	declare c cursor for select * from @Genre;
+	declare cg cursor for select * from @Genre;
 	--
-	open c;
-	fetch c into @tmp;
+	open cg;
+	fetch cg into @tmp;
 
 	while @@FETCH_STATUS = 0
 	begin
 		insert into movies.genre values(@id, @tmp);
-		fetch c into @tmp;
+		fetch cg into @tmp;
 	end
-	close c;
+	close cg;
 	--
 	declare @ssn int;
-	declare c cursor for select * from @Actors;
+	declare ca cursor for select * from @Actors;
 
-	open c;
-	fetch c into @ssn;
+	open ca;
+	fetch ca into @ssn;
 
 	while @@FETCH_STATUS = 0
 	begin
 		insert into movies.performed_by values(@id, @ssn);
-		fetch c into @ssn;
+		fetch ca into @ssn;
 	end
-	close c;
+	close ca;
 	---
-	declare c cursor for select * from @Writers;
+	declare cw cursor for select * from @Writers;
 
-	open c;
-	fetch c into @ssn;
+	open cw;
+	fetch cw into @ssn;
 
 	while @@FETCH_STATUS = 0
 	begin
 		insert into movies.written_by values(@id, @ssn);
-		fetch c into @ssn;
+		fetch cw into @ssn;
 	end
-	close c;
+	close cw;
 	---
 	return; 
 END
@@ -194,3 +201,82 @@ go
 exec movies.sp_AddActor @ssn = 100, @name = 'aaaaaa', @bdate = '1/2/3', @rank = 100, @bio = 'dasuhdufashduhsfu';
 
 --------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to insert Studios
+go
+create procedure movies.sp_AddStudio (
+									@id int,
+									@name varchar(50),
+									@locations AS movies.locationslist READONLY
+									)
+as
+begin
+
+	insert into movies.studio values (@id, @name);
+
+	declare @tmp varchar(50);
+	declare cs cursor for select * from @locations;
+	--
+	open cs;
+	fetch cs into @tmp;
+
+	while @@FETCH_STATUS = 0
+	begin
+		insert into movies.locations values(@id, @tmp);
+		fetch cs into @tmp;
+	end
+	close cs;
+
+end
+go
+
+drop procedure movies.sp_AddStudio;
+
+declare @g movies.locationslist;
+insert into @g values ('AAA');
+
+exec movies.sp_AddStudio @id = 100, @name = 'aaaaaa', @locations=@g;
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to insert Releases
+go
+create procedure movies.sp_AddRelease (
+									@id int,
+									@title varchar(50),
+									@date date,
+									@country varchar(50),
+									@cover varchar(100) = null,
+									@movieID int
+									)
+as
+begin
+
+	insert into movies.release values (@id, @title, @date, @country, @cover, @movieID);
+
+end
+go
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to insert Trailers
+
+go
+create procedure movies.sp_AddTrailer (
+									@id int,
+									@title varchar(50),
+									@date date,
+									@language varchar(50),
+									@movieID int,
+									@duration time
+									)
+as
+begin
+
+	insert into movies.trailer values (@id, @title, @date, @duration, @language, @movieID);
+
+end
+go
+
+drop procedure movies.sp_AddTrailer;
+
+exec movies.sp_AddTrailer 10,'AAAA', '1/1/2001', 'English', 5, '00:02:30';
+--------------------------------------------------------------------------------------------------------------------------------------------------------------

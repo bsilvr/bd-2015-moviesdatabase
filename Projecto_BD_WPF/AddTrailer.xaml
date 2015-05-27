@@ -21,10 +21,10 @@
         <TextBox Name="name" HorizontalAlignment="Left" Height="23" Margin="241,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
         <TextBox Name="language" HorizontalAlignment="Left" Height="23" Margin="241,277,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265"/>
 
-        <Button Name="add_release_button" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
-        <Button Name="cancel_add_release_button" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
+        <Button Click="add_release_button_Click" Name="add_release_button" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
+        <Button Click="cancel_add_release_button_Click" Name="cancel_add_release_button" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
 
         <DatePicker Name="date" Margin="241,220,494,252" />
-        <ComboBox HorizontalAlignment="Left" Margin="241,333,0,0" VerticalAlignment="Top" Width="265"/>
+        <ComboBox Name="movie_id_combo" HorizontalAlignment="Left" Margin="241,333,0,0" VerticalAlignment="Top" Width="265"/>
     </Grid>
 </Page>

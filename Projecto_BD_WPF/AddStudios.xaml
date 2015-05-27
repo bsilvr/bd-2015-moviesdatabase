@@ -17,12 +17,12 @@
         <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="241,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="265"/>
         <TextBox Name="name" HorizontalAlignment="Left" Height="23" Margin="241,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
 
-        <Button Name="add_studio_button" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
-        <Button Name="cancel_add_studio_button" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
+        <Button Name="add_studio_button" Click="add_studio_button_Click" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
+        <Button Name="cancel_add_studio_button" Click="cancel_add_studio_button_Click" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
         
         <ListBox Name="locations" HorizontalAlignment="Left" Margin="241,223,0,0" VerticalAlignment="Top" Width="265" Height="78"/>
-        <TextBox Name="add_new_location" HorizontalAlignment="Left" Height="23" Margin="241,323,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-        <Button Name="add_location_button" Content="Add" HorizontalAlignment="Left" Margin="455,326,0,0" VerticalAlignment="Top" Width="51"/>
+        <TextBox Name="add_new_location" HorizontalAlignment="Left" Height="23" Margin="241,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <Button Name="add_location_button" Click="add_location_button_Click" Content="Add" HorizontalAlignment="Left" Margin="455,326,0,0" VerticalAlignment="Top" Width="51"/>
 
     </Grid>
 </Page>

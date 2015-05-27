@@ -249,7 +249,7 @@ namespace Projecto_BD_WPF
             }
 
             cnn.Close();
-            AddPage add = new AddPage();
+            AddReleases add = new AddReleases(m.movieId);
             this.NavigationService.Navigate(add);
         }
 

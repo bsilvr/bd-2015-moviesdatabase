@@ -80,12 +80,14 @@
     </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="Movie.cs" />
+    <Compile Include="Release.cs" />
     <Compile Include="SearchMovies.xaml.cs">
       <DependentUpon>SearchMovies.xaml</DependentUpon>
     </Compile>
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trailer.cs" />
     <Page Include="AddActors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
