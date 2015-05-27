@@ -22,8 +22,8 @@
 
         <DatePicker Name="birth_date" Margin="241,288,494,184" />
 
-        <Button Name="add_actor_button" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
-        <Button Name="cancel_add_actor_button" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
+        <Button Name="add_actor_button" Click="add_actor_button_Click" Content="Add" HorizontalAlignment="Left" Margin="838,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="LightGreen"/>
+        <Button Name="cancel_add_actor_button" Click="cancel_add_actor_button_Click" Content="Cancel" HorizontalAlignment="Left" Margin="706,435,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" Background="#F22731"/>
 
     </Grid>
 </Page>

@@ -169,7 +169,16 @@ namespace Projecto_BD_WPF
 
         private void clear_Click(object sender, RoutedEventArgs e)
         {
+            title.Text = "";
+            Country.Text = "";
+            Year.Text = "";
+            age_restriction.Text = "";
+            studio.Text = "";
 
+            foreach (CheckBox s in actors_combo.Items)
+            {
+                s.IsChecked = false;                
+            }
         }
     }
 }

@@ -171,3 +171,26 @@ declare @g movies.actorlist;
 insert into @g values (1);
 
 exec movies.sp_searchMovies  @Studio_id=1;
+
+-------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to insert Actors
+go
+create procedure movies.sp_AddActor (
+									@ssn int,
+									@name varchar(50),
+									@bdate date,
+									@rank int,
+									@bio varchar(600)
+									)
+as
+begin
+
+insert into movies.actor values (@ssn, @name, @bdate, @rank, @bio);
+
+end
+go
+
+exec movies.sp_AddActor @ssn = 100, @name = 'aaaaaa', @bdate = '1/2/3', @rank = 100, @bio = 'dasuhdufashduhsfu';
+
+--------------------------------------------------------------------------------------------------------------------
