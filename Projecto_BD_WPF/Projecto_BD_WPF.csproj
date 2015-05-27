@@ -78,6 +78,7 @@
     <Compile Include="AddTrailer.xaml.cs">
       <DependentUpon>AddTrailer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="SearchMovies.xaml.cs">
       <DependentUpon>SearchMovies.xaml</DependentUpon>

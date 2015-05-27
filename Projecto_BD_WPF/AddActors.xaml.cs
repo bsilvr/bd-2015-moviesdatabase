@@ -28,8 +28,7 @@ namespace Projecto_BD_WPF
         {
             InitializeComponent();
             
-            string connetionString = "Data Source=tcp: 193.136.175.33\\SQLSERVER2012,8293;Initial Catalog=p5g1;User ID=p5g1;Password=portugal";
-            cnn = new SqlConnection(connetionString);
+            cnn = Connection.getConnection();
             try
             {
                 cnn.Open();
