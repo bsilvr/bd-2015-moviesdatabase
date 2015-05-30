@@ -419,3 +419,20 @@ BEGIN
 
 END
 go
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Create SP to add Directors
+GO
+CREATE PROCEDURE movies.sp_AddDirector (
+									@ssn int, 
+									@name varchar(50), 
+									@birth_date date,
+									@rank int
+									)
+AS
+BEGIN
+
+	INSERT into movies.director VALUES (@ssn, @name, @birth_date, @rank);
+	 
+END
+GO

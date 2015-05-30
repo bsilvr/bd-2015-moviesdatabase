@@ -151,8 +151,6 @@ namespace Projecto_BD_WPF
                 param_actors.TypeName = "movies.userlist";
             }
 
-            
-
             try
             {
                 SearchData(searchQuery);

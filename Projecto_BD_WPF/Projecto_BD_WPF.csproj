@@ -66,11 +66,20 @@
     <Compile Include="AddActors.xaml.cs">
       <DependentUpon>AddActors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddAward.xaml.cs">
+      <DependentUpon>AddAward.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddDirector.xaml.cs">
+      <DependentUpon>AddDirector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddMovies.xaml.cs">
       <DependentUpon>AddMovies.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddReleases.xaml.cs">
       <DependentUpon>AddReleases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddReview.xaml.cs">
+      <DependentUpon>AddReview.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddStudios.xaml.cs">
       <DependentUpon>AddStudios.xaml</DependentUpon>
@@ -78,9 +87,20 @@
     <Compile Include="AddTrailer.xaml.cs">
       <DependentUpon>AddTrailer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddUsers.xaml.cs">
+      <DependentUpon>AddUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWriter.xaml.cs">
+      <DependentUpon>AddWriter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Award.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="Release.cs" />
+    <Compile Include="Review.cs" />
+    <Compile Include="SearchActors.xaml.cs">
+      <DependentUpon>SearchActors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchAwards.xaml.cs">
       <DependentUpon>SearchAwards.xaml</DependentUpon>
     </Compile>
@@ -93,11 +113,30 @@
     <Compile Include="SearchReview.xaml.cs">
       <DependentUpon>SearchReview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchStudios.xaml.cs">
+      <DependentUpon>SearchStudios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchTrailers.xaml.cs">
       <DependentUpon>SearchTrailers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchUsers.xaml.cs">
+      <DependentUpon>SearchUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchWriters.xaml.cs">
+      <DependentUpon>SearchWriters.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trailer.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Writer.cs" />
     <Page Include="AddActors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddAward.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddDirector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,11 +152,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddStudios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTrailer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddWriter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +194,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SearchActors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SearchAwards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,7 +214,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SearchStudios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SearchTrailers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchWriters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

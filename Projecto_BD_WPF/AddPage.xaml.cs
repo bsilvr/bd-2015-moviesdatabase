@@ -59,5 +59,29 @@ namespace Projecto_BD_WPF
             Home home = new Home();
             this.NavigationService.Navigate(home);
         }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            AddUsers users = new AddUsers();
+            this.NavigationService.Navigate(users);
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            AddWriter writer = new AddWriter();
+            this.NavigationService.Navigate(writer);
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            AddReview review = new AddReview();
+            this.NavigationService.Navigate(review);
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            AddAward award = new AddAward();
+            this.NavigationService.Navigate(award);
+        }
     }
 }

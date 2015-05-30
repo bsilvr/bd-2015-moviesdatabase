@@ -32,22 +32,26 @@ namespace Projecto_BD_WPF
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            SearchActors actors = new SearchActors();
+            this.NavigationService.Navigate(actors);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            SearchStudios studios = new SearchStudios();
+            this.NavigationService.Navigate(studios);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            SearchUsers users = new SearchUsers();
+            this.NavigationService.Navigate(users);
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-
+            SearchWriters writers = new SearchWriters();
+            this.NavigationService.Navigate(writers);
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
