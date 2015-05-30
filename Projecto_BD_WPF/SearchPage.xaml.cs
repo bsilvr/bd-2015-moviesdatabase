@@ -64,7 +64,8 @@ namespace Projecto_BD_WPF
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-
+            SearchAwards awards = new SearchAwards();
+            this.NavigationService.Navigate(awards);
         }
 
         private void Button_Click_8(object sender, RoutedEventArgs e)

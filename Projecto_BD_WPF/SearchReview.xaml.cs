@@ -139,14 +139,14 @@ namespace Projecto_BD_WPF
             searchQuery.CommandType = CommandType.StoredProcedure;
 
             if (reviewRating != "")
-                searchQuery.Parameters.AddWithValue("@Language", reviewRating);
+                searchQuery.Parameters.AddWithValue("@Rating", reviewRating);
             if (reviewYear != "")
                 searchQuery.Parameters.AddWithValue("@Year", reviewYear);
             if (movieID != "")
                 searchQuery.Parameters.AddWithValue("@MovieID", Convert.ToInt32(movieID));
             if (users.Rows.Count > 0)
             {
-                SqlParameter param_actors = searchQuery.Parameters.AddWithValue("@Actors", users);
+                SqlParameter param_actors = searchQuery.Parameters.AddWithValue("@Users", users);
                 param_actors.SqlDbType = SqlDbType.Structured;
                 param_actors.TypeName = "movies.userlist";
             }
@@ -159,7 +159,7 @@ namespace Projecto_BD_WPF
             }
             catch
             {
-                MessageBox.Show("Error on searching Trailers in the database");
+                MessageBox.Show("Error on searching Reviews in the database");
                 return;
             }
         }

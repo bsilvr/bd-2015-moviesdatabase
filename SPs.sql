@@ -341,15 +341,16 @@ CREATE procedure movies.sp_searchReviews (
 											@MovieID int = null, 
 											@Rating int = null, 
 											@Year int = null, 
-											@Users as movies.userlist READONLY
+											@Users movies.userlist READONLY
 										)
 AS
 BEGIN
 	declare @tmp table (title varchar(50), username varchar(50), rating int, review varchar(500), [date] date, id int, movie_id int);
 	declare @out table (title varchar(50), username varchar(50), rating int, review varchar(500), [date] date, id int, movie_id int);
 
+	
 	if exists(select * from @Users)
-		insert into @tmp select * from movies.udf_GetReviews() join @Users on movies.udf_GetReviews.username = @Users.username;
+		insert into @tmp select title, movies.udf_GetReviews.username, rating, review, [date], id, movie_id from movies.udf_GetReviews() join @Users on movies.udf_GetReviews.username = [@Users].username;
 	else
 		insert into @tmp select * from movies.udf_GetReviews();
 
@@ -361,7 +362,7 @@ BEGIN
 	delete from @tmp;
 
 	if not @Rating is null
-		insert into @tmp select * from @out where rating=@Rating;
+		insert into @tmp select * from @out where rating >= @Rating;
 	else
 		insert into @tmp select * from @out;
 
@@ -369,6 +370,48 @@ BEGIN
 
 	if not @Year is null
 		insert into @out select * from @tmp where YEAR([date])=@Year;
+	else
+		insert into @out select * from @tmp;
+
+	select * from @out;
+
+END
+go
+
+-- drop procedure movies.sp_searchReviews;
+-- exec movies.sp_searchReviews
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Create SP to search awards
+go
+CREATE procedure movies.sp_searchAwards (
+										@Type varchar(50) = null, 
+										@MovieID varchar(50) = null, 
+										@Year int = null
+											)
+AS
+BEGIN
+	declare @tmp table([year] int, [type] varchar(50), designation varchar(50), movie_id int);
+	declare @out table([year] int, [type] varchar(50), designation varchar(50), movie_id int);
+	
+	insert into @tmp select * from movies.award;
+
+	if not @Type is null
+		insert into @out select * from @tmp where [type]=@Type;
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @MovieID is null
+		insert into @tmp select * from @out where movie_id=@MovieID;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out
+
+	if not @Year is null
+		insert into @out select * from @tmp where [year]=@Year;
 	else
 		insert into @out select * from @tmp;
 
