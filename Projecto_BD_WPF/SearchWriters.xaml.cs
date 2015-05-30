@@ -34,7 +34,6 @@ namespace Projecto_BD_WPF
             try
             {
                 cnn.Open();
-                MessageBox.Show("Sucessfull connection to database.");
             }
             catch (Exception ex)
             {

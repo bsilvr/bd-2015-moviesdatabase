@@ -77,5 +77,12 @@ namespace Projecto_BD_WPF
             Home home = new Home();
             this.NavigationService.Navigate(home);
         }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            SearchDirectors dir = new SearchDirectors();
+            this.NavigationService.Navigate(dir);
+
+        }
     }
 }

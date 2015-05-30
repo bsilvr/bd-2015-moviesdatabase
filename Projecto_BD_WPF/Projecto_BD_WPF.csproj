@@ -104,6 +104,9 @@
     <Compile Include="SearchAwards.xaml.cs">
       <DependentUpon>SearchAwards.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchDirectors.xaml.cs">
+      <DependentUpon>SearchDirectors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchMovies.xaml.cs">
       <DependentUpon>SearchMovies.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SearchAwards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchDirectors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

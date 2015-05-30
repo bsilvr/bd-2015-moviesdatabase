@@ -93,3 +93,5 @@ W:\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projec
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchWriters.g.cs
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddDirector.baml
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddDirector.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchDirectors.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchDirectors.g.cs

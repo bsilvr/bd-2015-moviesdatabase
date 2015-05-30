@@ -83,5 +83,11 @@ namespace Projecto_BD_WPF
             AddAward award = new AddAward();
             this.NavigationService.Navigate(award);
         }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            AddDirector director = new AddDirector();
+            this.NavigationService.Navigate(director);
+        }
     }
 }

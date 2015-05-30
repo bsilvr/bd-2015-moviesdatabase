@@ -436,3 +436,53 @@ BEGIN
 	 
 END
 GO
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Create SP to search Directors
+
+go
+CREATE procedure movies.sp_searchDirectors (
+										@name varchar(50) = null, 
+										@movieID varchar(50) = null, 
+										@bdate date = null,
+										@rank int = null
+											)
+AS
+BEGIN
+	declare @tmp table (ssn int, name varchar(50), bdate date, [rank] int);
+	declare @out table (ssn int, name varchar(50), bdate date, [rank] int);
+	
+	insert into @tmp select * from movies.director;
+
+	if not @name is null
+		insert into @out select * from @tmp where name like '%' + @name + '%';
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @MovieID is null
+		insert into @tmp select ssn, name, bdate, [rank] from @out join movies.movie on ssn=director_ssn where id=@MovieID;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out
+
+	if not @bdate is null
+		insert into @out select * from @tmp where bdate=@bdate;
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @rank is null
+		insert into @tmp select * from @out where [rank] <= @rank;
+	else
+		insert into @tmp select * from @out;
+
+	select * from @tmp;
+
+END
+go
+-- drop procedure movies.sp_searchDirectors
+-- exec movies.sp_searchDirectors @name='Frank'
