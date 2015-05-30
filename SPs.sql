@@ -24,14 +24,21 @@ AS TABLE
 	location varchar(50)
 );
 
-drop type movies.genrelist;
-drop type movies.actorlist;
-drop type movies.writerlist;
-drop type movies.locationslist;
+CREATE TYPE movies.userlist
+AS TABLE
+(
+	username varchar(50)
+);
+
+--drop type movies.genrelist;
+--drop type movies.actorlist;
+--drop type movies.writerlist;
+--drop type movies.locationslist;
+--drop type movies.userlist;
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
-drop procedure movies.sp_AddMovie;
+--drop procedure movies.sp_AddMovie;
 
 GO
 CREATE PROCEDURE movies.sp_AddMovie (
@@ -94,12 +101,12 @@ BEGIN
 END
 GO
 
-declare @g movies.genrelist;
-insert into @g values ('AAA');
-insert into @g values ('BBB');
-insert into @g values ('CCC');
+--declare @g movies.genrelist;
+--insert into @g values ('AAA');
+--insert into @g values ('BBB');
+--insert into @g values ('CCC');
 
-exec movies.sp_AddMovie 
+/*exec movies.sp_AddMovie 
 									@id=20,
 									@duration='1:2:3', 
 									@description='fdsvfdbvfdhf', 
@@ -108,7 +115,7 @@ exec movies.sp_AddMovie
 									@studio_id=1, 
 									@director_ssn=1, 
 									@Genre=@g
-									;
+									;*/
 
 
 
@@ -172,12 +179,12 @@ BEGIN
 END
 go
 
-drop procedure movies.sp_searchMovies;
+--drop procedure movies.sp_searchMovies;
 
-declare @g movies.actorlist;
-insert into @g values (1);
+--declare @g movies.actorlist;
+--insert into @g values (1);
 
-exec movies.sp_searchMovies  @Studio_id=1;
+--exec movies.sp_searchMovies  @Studio_id=1;
 
 -------------------------------------------------------------------------------------------------------------------
 
@@ -198,7 +205,7 @@ insert into movies.actor values (@ssn, @name, @bdate, @rank, @bio);
 end
 go
 
-exec movies.sp_AddActor @ssn = 100, @name = 'aaaaaa', @bdate = '1/2/3', @rank = 100, @bio = 'dasuhdufashduhsfu';
+--exec movies.sp_AddActor @ssn = 100, @name = 'aaaaaa', @bdate = '1/2/3', @rank = 100, @bio = 'dasuhdufashduhsfu';
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,12 +237,12 @@ begin
 end
 go
 
-drop procedure movies.sp_AddStudio;
+--drop procedure movies.sp_AddStudio;
 
-declare @g movies.locationslist;
-insert into @g values ('AAA');
+--declare @g movies.locationslist;
+--insert into @g values ('AAA');
 
-exec movies.sp_AddStudio @id = 100, @name = 'aaaaaa', @locations=@g;
+--exec movies.sp_AddStudio @id = 100, @name = 'aaaaaa', @locations=@g;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Create SP to insert Releases
@@ -276,7 +283,96 @@ begin
 end
 go
 
-drop procedure movies.sp_AddTrailer;
+--drop procedure movies.sp_AddTrailer;
 
-exec movies.sp_AddTrailer 10,'AAAA', '1/1/2001', 'English', 5, '00:02:30';
+--exec movies.sp_AddTrailer 10,'AAAA', '1/1/2001', 'English', 5, '00:02:30';
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to search trailers
+go
+CREATE procedure movies.sp_searchTrailers (
+										@Title varchar(50) = null, 
+										@MovieID varchar(5) = null,
+										@Language varchar(50) = null, 
+										@Year int = null
+											)
+AS
+BEGIN
+	declare @tmp table(id int, title varchar(50), [date] date, duration time, [language] varchar(50), movie_id int);
+	declare @out table(id int, title varchar(50), [date] date, duration time, [language] varchar(50), movie_id int);
+	
+	insert into @tmp select * from movies.trailer;
+
+	if not @Title is null
+		insert into @out select * from @tmp where title=@Title;
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @MovieID is null
+		insert into @tmp select * from @out where movie_id=@MovieID;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out
+
+	if not @Language is null
+		insert into @out select * from @tmp where [language]=@Language;
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @Year is null
+		insert into @tmp select * from @out where YEAR([date])=@Year;
+	else
+		insert into @tmp select * from @out;
+
+	select * from @tmp;
+
+END
+go
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Create SP to search reviews
+go
+CREATE procedure movies.sp_searchReviews (
+											@MovieID int = null, 
+											@Rating int = null, 
+											@Year int = null, 
+											@Users as movies.userlist READONLY
+										)
+AS
+BEGIN
+	declare @tmp table (title varchar(50), username varchar(50), rating int, review varchar(500), [date] date, id int, movie_id int);
+	declare @out table (title varchar(50), username varchar(50), rating int, review varchar(500), [date] date, id int, movie_id int);
+
+	if exists(select * from @Users)
+		insert into @tmp select * from movies.udf_GetReviews() join @Users on movies.udf_GetReviews.username = @Users.username;
+	else
+		insert into @tmp select * from movies.udf_GetReviews();
+
+	if not @MovieID is null
+		insert into @out select * from @tmp where movie_id=@MovieID;
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @Rating is null
+		insert into @tmp select * from @out where rating=@Rating;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out
+
+	if not @Year is null
+		insert into @out select * from @tmp where YEAR([date])=@Year;
+	else
+		insert into @out select * from @tmp;
+
+	select * from @out;
+
+END
+go

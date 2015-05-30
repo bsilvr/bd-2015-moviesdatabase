@@ -53,5 +53,11 @@ namespace Projecto_BD_WPF
             AddTrailer addTrailer = new AddTrailer();
             this.NavigationService.Navigate(addTrailer);
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+            this.NavigationService.Navigate(home);
+        }
     }
 }

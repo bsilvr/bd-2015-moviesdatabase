@@ -29,5 +29,48 @@ namespace Projecto_BD_WPF
             SearchMovies searchMovie = new SearchMovies();
             this.NavigationService.Navigate(searchMovie);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            SearchTrailers searchTrailer = new SearchTrailers();
+            this.NavigationService.Navigate(searchTrailer);
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            SearchReview reviews = new SearchReview();
+            this.NavigationService.Navigate(reviews);
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            Home home = new Home();
+            this.NavigationService.Navigate(home);
+        }
     }
 }

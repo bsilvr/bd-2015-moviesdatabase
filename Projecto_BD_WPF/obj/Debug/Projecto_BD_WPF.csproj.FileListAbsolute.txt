@@ -69,3 +69,9 @@ W:\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projec
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddStudios.g.cs
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\AddTrailer.g.cs
 \\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchMovies.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchTrailers.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchTrailers.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchAwards.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchReview.baml
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchAwards.g.cs
+\\psf\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\SearchReview.g.cs

@@ -1,5 +1,5 @@
 use p5g1
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 go
 CREATE FUNCTION movies.udf_GetMovies () RETURNS table
 AS
@@ -10,7 +10,8 @@ AS
 	);
 go
 
-drop function movies.udf_GetMovies;
+--drop function movies.udf_GetMovies;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_Actors () RETURNS table
@@ -21,6 +22,7 @@ AS
 		FROM movies.actor
 	);
 go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_Writers () RETURNS table
@@ -31,6 +33,7 @@ AS
 		FROM movies.writer
 	);
 go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_UniqueGenres () RETURNS table
@@ -41,6 +44,7 @@ AS
 		FROM movies.genre
 	);
 go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_Directors () RETURNS table
@@ -51,6 +55,7 @@ AS
 		FROM movies.director
 	);
 go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_studios () RETURNS table
@@ -61,6 +66,7 @@ AS
 		FROM movies.studio
 	);
 go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_UniqueLocations () RETURNS table
@@ -71,6 +77,7 @@ AS
 		FROM movies.locations
 	);
 go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 go
 CREATE FUNCTION movies.udf_movieIdsNames () RETURNS table
@@ -83,6 +90,53 @@ AS
 	);
 go
 
-drop function movies.udf_movieIdsNames;
+--drop function movies.udf_movieIdsNames;
 
-select * from movies.udf_movieIdsNames();
+--select * from movies.udf_movieIdsNames();
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+go
+CREATE FUNCTION movies.udf_GetTrailers () RETURNS table
+AS
+	RETURN 
+	(
+		SELECT *
+		FROM movies.trailer
+	);
+go
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+go
+CREATE FUNCTION movies.udf_GetLanguages () RETURNS table
+AS
+	RETURN 
+	(
+		SELECT DISTINCT [language]
+		FROM movies.trailer
+	);
+go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+go
+CREATE FUNCTION movies.udf_GetReviews () RETURNS table
+AS
+	RETURN 
+	(
+		SELECT title, movies.review.username, rating, review, [date], movies.review.id, movies.udf_movieIdsNames.id as movie_id
+		FROM movies.review join movies.udf_movieIdsNames () on movie_id=movies.udf_movieIdsNames.id
+	);
+go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+go
+CREATE FUNCTION movies.udf_GetUsers () RETURNS table
+AS
+	RETURN 
+	(
+		SELECT *
+		FROM movies.users
+	);
+go
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------

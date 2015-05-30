@@ -38,7 +38,7 @@ namespace Projecto_BD_WPF
                 return;
             }
 
-            string getMovieIdQuery = "SELECT * FROM movies.udf_movieIdsNames()";
+            string getMovieIdQuery = "SELECT * FROM movies.udf_movieIdsNames() order by id";
 
             complete_combo_box(getMovieIdQuery, movie_id_combo);
         }

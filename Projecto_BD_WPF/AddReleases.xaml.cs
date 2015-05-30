@@ -39,7 +39,7 @@ namespace Projecto_BD_WPF
                 return;
             }
 
-            string getMovieIdQuery = "SELECT * FROM movies.udf_movieIdsNames()";
+            string getMovieIdQuery = "SELECT * FROM movies.udf_movieIdsNames() order by id";
 
             complete_combo_box(getMovieIdQuery, movie_id_combo);
         }
@@ -54,7 +54,7 @@ namespace Projecto_BD_WPF
         {
             movie_id_combo.Items.Add(autoMovieID.ToString());
             movie_id_combo.SelectedIndex = movie_id_combo.Items.IndexOf(autoMovieID.ToString());
-            movie_id_combo.IsReadOnly = true;
+            movie_id_combo.IsHitTestVisible = false;
 
             country.Text = "USA";
             country.IsReadOnly = true;
