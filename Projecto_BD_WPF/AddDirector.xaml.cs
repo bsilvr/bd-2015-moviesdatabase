@@ -46,7 +46,7 @@ namespace Projecto_BD_WPF
 
         private void add_writer_button_Click(object sender, RoutedEventArgs e)
         {
-            string insertWriter = "movies.sp_AddDirector";
+            string insertDirector = "movies.sp_AddDirector";
 
             Writer w = new Writer();
 
@@ -85,6 +85,11 @@ namespace Projecto_BD_WPF
 
                 w.bdate = new DateTime(year, month, day);
             }
+            else 
+            {
+                MessageBox.Show("Birth Date Field is required");
+                return;                
+            }
 
             try
             {
@@ -96,12 +101,12 @@ namespace Projecto_BD_WPF
                 return;
             }
 
-            cmd = new SqlCommand(insertWriter, cnn);
+            cmd = new SqlCommand(insertDirector, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@ssn", w.ssn);
             cmd.Parameters.AddWithValue("@name", w.name);
-            cmd.Parameters.AddWithValue("@bdate", w.bdate.ToString("u"));
+            cmd.Parameters.AddWithValue("@birth_date", w.bdate.ToString("u"));
             cmd.Parameters.AddWithValue("@rank", w.rank);
 
 
@@ -109,7 +114,7 @@ namespace Projecto_BD_WPF
             {
                 cmd.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
                 MessageBox.Show("Error on inserting Director to database");
                 return;

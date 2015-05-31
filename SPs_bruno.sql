@@ -141,7 +141,7 @@ BEGIN
 		insert into @tmp select * from movies.udf_GetMovies();
 
 	if not @Title is null
-		insert into @out select * from @tmp where title=@Title;
+		insert into @out select * from @tmp where title like '%'+@Title+'%';
 	else
 		insert into @out select * from @tmp;
 
@@ -304,7 +304,7 @@ BEGIN
 	insert into @tmp select * from movies.trailer;
 
 	if not @Title is null
-		insert into @out select * from @tmp where title=@Title;
+		insert into @out select * from @tmp where title like '%'+@Title+'%';
 	else
 		insert into @out select * from @tmp;
 
@@ -333,6 +333,8 @@ BEGIN
 
 END
 go
+
+-- drop procedure movies.sp_searchTrailers
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Create SP to search reviews
@@ -436,6 +438,8 @@ BEGIN
 	 
 END
 GO
+
+-- exec movies.sp_AddDirector @ssn=100, @name='AA', @birth_date='02-03-1994', @rank=5000
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Create SP to search Directors
