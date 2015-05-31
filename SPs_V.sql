@@ -82,9 +82,9 @@ END
 --drop PROCEDURE movies.sp_SearchActors
 GO
 CREATE PROCEDURE movies.sp_SearchActors (
-									@name varchar(50),
-									@bdate date,
-									@rank int
+									@name varchar(50) = null,
+									@bdate date = null,
+									@rank int = null
 									)
 AS
 BEGIN
@@ -92,10 +92,10 @@ BEGIN
 	declare @out table(ssn int, name varchar(50), bdate date, [rank] int, bio varchar(500));
 	declare @tmp table(ssn int, name varchar(50), bdate date, [rank] int, bio varchar(500));
 
-	insert into @tmp select * from movies.udf_GetActors();
+	insert into @out select * from movies.udf_GetActors();
 
 	if not @name is null
-		insert into @tmp select * from @out where name=@name;
+		insert into @tmp select * from @out where name like '%'+@name+'%';
 	else
 		insert into @tmp select * from @out;
 
@@ -113,10 +113,12 @@ BEGIN
 	else
 		insert into @tmp select * from @out;
 
-	select * from @out;
+	select * from @tmp;
 	
 END
 go
+
+-- exec movies.sp_SearchActors @rank=500
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Create SP to search Users
@@ -124,11 +126,11 @@ go
 --drop PROCEDURE movies.sp_SearchUsers
 GO
 CREATE PROCEDURE movies.sp_SearchUsers (
-									@username varchar(20),
-									@name varchar(50),
-									@bdate date,
-									@email varchar(50),
-									@country varchar(50)
+									@username varchar(20) = null,
+									@name varchar(50) = null,
+									@bdate date = null,
+									@email varchar(50) = null,
+									@country varchar(50) = null
 									)
 AS
 BEGIN
@@ -146,7 +148,7 @@ BEGIN
 	delete from @tmp;
 
 	if not @name is null
-		insert into @tmp select * from @out where name=@name;
+		insert into @tmp select * from @out where name like '%'+@name+'%';
 	else
 		insert into @tmp select * from @out;
 
@@ -160,15 +162,22 @@ BEGIN
 	delete from @tmp;
 	 
 	if not @email is null
-		insert into @out select * from @tmp where email=@email;
+		insert into @tmp select * from @out where email=@email;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out;
+
+	if not @country is null
+		insert into @out select * from @tmp where country=@country;
 	else
 		insert into @out select * from @tmp;
-
-	delete from @tmp;
 
 	select * from @out;
 END
 go
+
+-- exec movies.sp_SearchUsers @email = 'test@ua.pt'
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -177,9 +186,9 @@ go
 --drop PROCEDURE movies.sp_SearchWriters
 GO
 CREATE PROCEDURE movies.sp_SearchWriters (
-									@name varchar(50),
-									@bdate date,
-									@rank int
+									@name varchar(50) = null,
+									@bdate date = null,
+									@rank int = null
 									)
 AS
 BEGIN
@@ -187,10 +196,10 @@ BEGIN
 	declare @out table(ssn int, name varchar(50), bdate date, [rank] int);
 	declare @tmp table(ssn int, name varchar(50), bdate date, [rank] int);
 
-	insert into @tmp select * from movies.udf_GetWriters();
+	insert into @out select * from movies.udf_GetWriters();
 
 	if not @name is null
-		insert into @tmp select * from @out where name=@name;
+		insert into @tmp select * from @out where name like '%'+@name+'%';
 	else
 		insert into @tmp select * from @out;
 
@@ -208,7 +217,7 @@ BEGIN
 	else
 		insert into @tmp select * from @out;
 
-	select * from @out;
+	select * from @tmp;
 	
 END
 go
@@ -220,9 +229,8 @@ go
 --drop PROCEDURE movies.sp_SearchStudios
 GO
 CREATE PROCEDURE movies.sp_SearchStudios (
-									@id int,
-									@name varchar(50),
-									@location varchar(50)
+									@name varchar(50) = null,
+									@location varchar(50) = null
 									)
 AS
 BEGIN
@@ -230,17 +238,17 @@ BEGIN
 	declare @out table(id int, name varchar(50), location varchar(50));
 	declare @tmp table(id int, name varchar(50), location varchar(50));
 
-	insert into @tmp select * from movies.udf_GetStudios();
+	insert into @out select * from movies.udf_GetStudios();
 
 	if not @name is null
-		insert into @tmp select * from @out where name=@name;
+		insert into @tmp select * from @out where name like '%'+@name+'%';
 	else
 		insert into @tmp select * from @out;
 
 	delete from @out
 
-	if not @id is null
-		insert into @out select * from @tmp where id=@id;
+	if not @location is null
+		insert into @out select * from @tmp where  [@tmp].location = @location;
 	else
 		insert into @out select * from @tmp;
 
@@ -250,3 +258,5 @@ BEGIN
 	
 END
 go
+
+-- exec movies.sp_SearchStudios @location = 'USA'

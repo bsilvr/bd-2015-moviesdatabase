@@ -110,7 +110,7 @@ namespace Projecto_BD_WPF
         private void clear_Click(object sender, RoutedEventArgs e)
         {
             name.Text = "";
-            birth_date.SelectedDate = null;
+            birth_date.Text = "";
             rank.Text = "";
         }
     }

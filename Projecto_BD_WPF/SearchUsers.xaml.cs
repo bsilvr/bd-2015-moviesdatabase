@@ -99,7 +99,7 @@ namespace Projecto_BD_WPF
             if (uEmail != "")
                 cmd.Parameters.AddWithValue("@email", uEmail);
             if (uCountry != "")
-                cmd.Parameters.AddWithValue("@rank", uCountry);
+                cmd.Parameters.AddWithValue("@country", uCountry);
 
             try
             {
@@ -116,7 +116,7 @@ namespace Projecto_BD_WPF
         {
             username.Text = "";
             name.Text = "";
-            birth_date.SelectedDate = null;
+            birth_date.Text = "";
             email.Text = "";
             country.Text = "";
         }

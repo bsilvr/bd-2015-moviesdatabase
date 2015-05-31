@@ -62,9 +62,7 @@ namespace Projecto_BD_WPF
         {
             string searchStudios = "movies.sp_searchStudios";
 
-
             char[] d = { ':', '-', '/' };
-            string sID = id.Text;
             string sName = name.Text;
             string sLocation = location.Text;
            
@@ -72,8 +70,6 @@ namespace Projecto_BD_WPF
             cmd = new SqlCommand(searchStudios, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            if (sID != "")
-                cmd.Parameters.AddWithValue("@ssn", sID);
             if (sName != "")
                 cmd.Parameters.AddWithValue("@name", sName);
             if (sLocation != null)
@@ -93,7 +89,6 @@ namespace Projecto_BD_WPF
 
         private void clear_Click(object sender, RoutedEventArgs e)
         {
-            id.Text = "";
             name.Text = "";
             location.Text = "";
         }

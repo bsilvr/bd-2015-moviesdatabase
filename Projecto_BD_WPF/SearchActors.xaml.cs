@@ -66,9 +66,6 @@ namespace Projecto_BD_WPF
             char[] d = { ':', '-', '/'};
             string actorName = name.Text;
             string actorRank = rank.Text;
-
-
-
             DateTime aBdate = new DateTime(1, 1, 1);
 
             if (birth_date != null && birth_date.Text != "")
@@ -112,7 +109,7 @@ namespace Projecto_BD_WPF
         private void clear_Click(object sender, RoutedEventArgs e)
         {
             name.Text = "";
-            birth_date.Text = null;
+            birth_date.Text = "";
             rank.Text = "";
         }
     }
