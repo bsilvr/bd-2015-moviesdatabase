@@ -34,7 +34,6 @@ namespace Projecto_BD_WPF
             try
             {
                 cnn.Open();
-                MessageBox.Show("Sucessfull connection to database.");
             }
             catch (Exception ex)
             {
@@ -64,12 +63,29 @@ namespace Projecto_BD_WPF
             string searchUsers = "movies.sp_searchUsers";
 
             char[] d = { ':', '-', '/' };
-            string uUsername = username.Text;
+            string  uUsername= username.Text;
             string uName = name.Text;
             string uEmail = email.Text;
             string uCountry = country.Text;
 
-            string[] uBdate = birth_date.SelectedDate.Value.ToShortDateString().Split(d);
+            DateTime uBdate = new DateTime(1, 1, 1);
+
+            if (birth_date != null && birth_date.Text != "")
+            {
+                int year, month, day;
+                string[] dates = new string[3];
+                dates = birth_date.Text.Split(d);
+                year = Convert.ToInt32(dates[2]);
+                month = Convert.ToInt32(dates[1]);
+                day = Convert.ToInt32(dates[0]);
+
+                if (year > 20)
+                    year += 1900;
+                else
+                    year += 2000;
+
+                uBdate = new DateTime(year, month, day);
+            }
 
             cmd = new SqlCommand(searchUsers, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -78,8 +94,8 @@ namespace Projecto_BD_WPF
                 cmd.Parameters.AddWithValue("@username", uUsername);
             if (uName != "")
                 cmd.Parameters.AddWithValue("@name", uName);
-            if (uBdate != null)
-                cmd.Parameters.AddWithValue("@bdate", uBdate);
+            if (uBdate.ToString("u") != "0001-01-01 00:00:00Z")
+                cmd.Parameters.AddWithValue("@bdate", uBdate.ToString("u"));
             if (uEmail != "")
                 cmd.Parameters.AddWithValue("@email", uEmail);
             if (uCountry != "")
@@ -106,4 +122,3 @@ namespace Projecto_BD_WPF
         }
     }
 }
-

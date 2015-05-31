@@ -33,7 +33,6 @@ namespace Projecto_BD_WPF
             try
             {
                 cnn.Open();
-                MessageBox.Show("Sucessfull connection to database.");
             }
             catch (Exception ex)
             {
@@ -42,9 +41,6 @@ namespace Projecto_BD_WPF
 
             LoadData("SELECT * from movies.udf_GetStudios()");
 
-            string getLocationQuery = "SELECT location FROM movies.udf_location()";
-
-            complete_combo_box(getLocationQuery, location);
         }
         private void LoadData(string query)
         {
@@ -61,26 +57,7 @@ namespace Projecto_BD_WPF
             sda.Fill(dt);
             search_result.ItemsSource = dt.DefaultView;
         }
-        private void complete_combo_box(string query, ComboBox combobox)
-        {
-            SqlCommand command = new SqlCommand(query, cnn);
-
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                int count = reader.FieldCount;
-                while (reader.Read())
-                {
-                    string item = reader.GetValue(0).ToString();
-
-                    for (int i = 1; i < count; i++)
-                    {
-                        item += " - " + reader.GetValue(i).ToString();
-                    }
-
-                    combobox.Items.Add(item);
-                }
-            }
-        }
+        
         private void search_Click(object sender, RoutedEventArgs e)
         {
             string searchStudios = "movies.sp_searchStudios";
@@ -89,8 +66,8 @@ namespace Projecto_BD_WPF
             char[] d = { ':', '-', '/' };
             string sID = id.Text;
             string sName = name.Text;
-            string sLocation = location.Text.ToString().Split(d)[0];
-
+            string sLocation = location.Text;
+           
 
             cmd = new SqlCommand(searchStudios, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -122,4 +99,3 @@ namespace Projecto_BD_WPF
         }
     }
 }
-

@@ -1,27 +1,30 @@
 use p5g1
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- drop FUNCTION movies.udf_GetActors
 go
 CREATE FUNCTION movies.udf_GetActors () RETURNS table
 AS
 	RETURN 
 	(
-		SELECT actor.ssn, name, bdate, [rank], bio
+		SELECT *
 		FROM movies.actor 
 	);
 go
  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- drop FUNCTION movies.udf_GetWriters
 go
 CREATE FUNCTION movies.udf_GetWriters () RETURNS table
 AS
 	RETURN 
 	(
-		SELECT writer.ssn, name, bdate, [rank]
+		SELECT *
 		FROM movies.writer
 	);
 go
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- drop FUNCTION movies.udf_GetUsers
 go
 CREATE FUNCTION movies.udf_GetUsers () RETURNS table
@@ -33,6 +36,7 @@ AS
 	);
 go
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- drop FUNCTION movies.udf_GetUsers
 go
 CREATE FUNCTION movies.udf_GetStudios () RETURNS table
@@ -44,6 +48,8 @@ AS
 	);
 go
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- drop FUNCTION movies.udf_location 
 go
 CREATE FUNCTION movies.udf_location () RETURNS table
 AS
@@ -53,4 +59,3 @@ AS
 		FROM movies.locations
 	);
 go
-

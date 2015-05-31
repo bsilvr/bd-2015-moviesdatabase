@@ -34,7 +34,6 @@ namespace Projecto_BD_WPF
             try
             {
                 cnn.Open();
-                MessageBox.Show("Sucessfull connection to database.");
             }
             catch (Exception ex)
             {
@@ -43,7 +42,7 @@ namespace Projecto_BD_WPF
 
             LoadData("SELECT * from movies.udf_GetActors()");
 
-
+           
         }
         private void LoadData(string query)
         {
@@ -64,27 +63,40 @@ namespace Projecto_BD_WPF
         {
             string searchActors = "movies.sp_searchActors";
 
-            char[] d = { ':', '-', '/' };
-            string actorSSN = ssn.Text;
+            char[] d = { ':', '-', '/'};
             string actorName = name.Text;
             string actorRank = rank.Text;
-            string actorBio = bio.Text;
 
 
-            string[] actorBdate = birth_date.SelectedDate.Value.ToShortDateString().Split(d);
+
+            DateTime aBdate = new DateTime(1, 1, 1);
+
+            if (birth_date != null && birth_date.Text != "")
+            {
+                int year, month, day;
+                string[] dates = new string[3];
+                dates = birth_date.Text.Split(d);
+                year = Convert.ToInt32(dates[2]);
+                month = Convert.ToInt32(dates[1]);
+                day = Convert.ToInt32(dates[0]);
+
+                if (year > 20)
+                    year += 1900;
+                else
+                    year += 2000;
+
+                aBdate = new DateTime(year, month, day);
+            }
 
             cmd = new SqlCommand(searchActors, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            if (actorSSN != "")
-                cmd.Parameters.AddWithValue("@ssn", actorSSN);
+
             if (actorName != "")
                 cmd.Parameters.AddWithValue("@name", actorName);
-            if (actorBdate != null)
-                cmd.Parameters.AddWithValue("@bdate", actorBdate);
+            if (aBdate.ToString("u") != "0001-01-01 00:00:00Z")
+                cmd.Parameters.AddWithValue("@bdate", aBdate.ToString("u"));
             if (actorRank != "")
                 cmd.Parameters.AddWithValue("@rank", actorRank);
-            if (actorBio != "")
-                cmd.Parameters.AddWithValue("@bio", actorBio);
 
             try
             {
@@ -99,11 +111,9 @@ namespace Projecto_BD_WPF
 
         private void clear_Click(object sender, RoutedEventArgs e)
         {
-            ssn.Text = "";
             name.Text = "";
             birth_date.Text = null;
             rank.Text = "";
-            bio.Text = "";
         }
     }
 }

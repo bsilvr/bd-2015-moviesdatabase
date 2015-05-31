@@ -9,16 +9,14 @@
 
     <Grid Height="500" Margin="10,12,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="1000" Grid.RowSpan="7" Grid.ColumnSpan="7" Background="LightGray">
         <Label Content="Search Writer:" FontSize="40" FontWeight="Bold" HorizontalAlignment="Left" Margin="139,28,0,0" VerticalAlignment="Top"/>
-        <Label Content="SSN: " HorizontalAlignment="Left" Margin="79,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.289,0.269"/>
-        <Label Content="Name: " HorizontalAlignment="Left" Margin="75,168,0,0" VerticalAlignment="Top"/>
-        <Label Content="Birth Date: " HorizontalAlignment="Left" Margin="54,211,0,0" VerticalAlignment="Top"/>
-        <Label Content="Rank: " HorizontalAlignment="Left" Margin="79,252,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name: " HorizontalAlignment="Left" Margin="75,125,0,0" VerticalAlignment="Top"/>
+        <Label Content="Birth Date: " HorizontalAlignment="Left" Margin="54,170,0,0" VerticalAlignment="Top"/>
+        <Label Content="Rank: " HorizontalAlignment="Left" Margin="81,224,0,0" VerticalAlignment="Top"/>
 
 
-        <TextBox Name="ssn" HorizontalAlignment="Left" Height="23" Margin="142,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
-        <TextBox Name="name" HorizontalAlignment="Left" Height="23" Margin="142,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
-        <DatePicker Name="birth_date" Margin="139,212,654,263" RenderTransformOrigin="0.498,0.933" />
-        <TextBox Name="rank" HorizontalAlignment="Left" Height="23" Margin="142,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
+        <TextBox Name="name" HorizontalAlignment="Left" Height="23" Margin="142,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
+        <DatePicker Name="birth_date" Margin="139,179,654,296" RenderTransformOrigin="0.498,0.933" />
+        <TextBox Name="rank" HorizontalAlignment="Left" Height="23" Margin="142,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
 
         <DataGrid Name="search_result" IsReadOnly="True" HorizontalAlignment="Left" Margin="449,125,0,0" VerticalAlignment="Top" Height="343" Width="517">
 

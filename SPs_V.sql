@@ -82,11 +82,9 @@ END
 --drop PROCEDURE movies.sp_SearchActors
 GO
 CREATE PROCEDURE movies.sp_SearchActors (
-									@ssn int,
 									@name varchar(50),
 									@bdate date,
-									@rank int,
-									@bio varchar(500)
+									@rank int
 									)
 AS
 BEGIN
@@ -94,10 +92,54 @@ BEGIN
 	declare @out table(ssn int, name varchar(50), bdate date, [rank] int, bio varchar(500));
 	declare @tmp table(ssn int, name varchar(50), bdate date, [rank] int, bio varchar(500));
 
-	insert into @tmp select * from movies.udf_GetMovies();
+	insert into @tmp select * from movies.udf_GetActors();
 
-	if not @ssn is null
-		insert into @out select * from @tmp where ssn=@ssn;
+	if not @name is null
+		insert into @tmp select * from @out where name=@name;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out
+
+	if not @bdate is null
+		insert into @out select * from @tmp where bdate=@bdate;
+	else
+		insert into @out select * from @tmp;
+
+	delete from @tmp;
+
+	if not @rank is null
+		insert into @tmp select * from @out where [rank] <= @rank;
+	else
+		insert into @tmp select * from @out;
+
+	select * from @out;
+	
+END
+go
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to search Users
+
+--drop PROCEDURE movies.sp_SearchUsers
+GO
+CREATE PROCEDURE movies.sp_SearchUsers (
+									@username varchar(20),
+									@name varchar(50),
+									@bdate date,
+									@email varchar(50),
+									@country varchar(50)
+									)
+AS
+BEGIN
+
+	declare @out table(username varchar(20), name varchar(50), bdate date, email varchar(50), country varchar(50));
+	declare @tmp table(username varchar(20), name varchar(50), bdate date, email varchar(50), country varchar(50));
+
+	insert into @tmp select * from movies.udf_GetUsers();
+
+	if not @username is null
+		insert into @out select * from @tmp where username=@username;
 	else
 		insert into @out select * from @tmp;
 
@@ -117,8 +159,8 @@ BEGIN
 
 	delete from @tmp;
 	 
-	if not @bio is null
-		insert into @out select * from @tmp where bio=@bio;
+	if not @email is null
+		insert into @out select * from @tmp where email=@email;
 	else
 		insert into @out select * from @tmp;
 
@@ -128,34 +170,24 @@ BEGIN
 END
 go
 
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Create SP to search Actors
+-- Create SP to search Writers
 
---drop PROCEDURE movies.sp_SearchUsers
+--drop PROCEDURE movies.sp_SearchWriters
 GO
-CREATE PROCEDURE movies.sp_SearchActors (
-									@ssn int,
+CREATE PROCEDURE movies.sp_SearchWriters (
 									@name varchar(50),
 									@bdate date,
-									@rank int,
-									@bio varchar(500)
+									@rank int
 									)
 AS
 BEGIN
 
-	declare @out table(ssn int, name varchar(50), bdate date, [rank] int, bio varchar(500));
-	declare @tmp table(ssn int, name varchar(50), bdate date, [rank] int, bio varchar(500));
+	declare @out table(ssn int, name varchar(50), bdate date, [rank] int);
+	declare @tmp table(ssn int, name varchar(50), bdate date, [rank] int);
 
-	insert into @tmp select * from movies.udf_GetMovies();
-
-	if not @ssn is null
-		insert into @out select * from @tmp where ssn=@ssn;
-	else
-		insert into @out select * from @tmp;
-
-	delete from @tmp;
+	insert into @tmp select * from movies.udf_GetWriters();
 
 	if not @name is null
 		insert into @tmp select * from @out where name=@name;
@@ -170,14 +202,51 @@ BEGIN
 		insert into @out select * from @tmp;
 
 	delete from @tmp;
-	 
-	if not @bio is null
-		insert into @out select * from @tmp where bio=@bio;
+
+	if not @rank is null
+		insert into @tmp select * from @out where [rank] <= @rank;
+	else
+		insert into @tmp select * from @out;
+
+	select * from @out;
+	
+END
+go
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Create SP to search Studios
+
+--drop PROCEDURE movies.sp_SearchStudios
+GO
+CREATE PROCEDURE movies.sp_SearchStudios (
+									@id int,
+									@name varchar(50),
+									@location varchar(50)
+									)
+AS
+BEGIN
+
+	declare @out table(id int, name varchar(50), location varchar(50));
+	declare @tmp table(id int, name varchar(50), location varchar(50));
+
+	insert into @tmp select * from movies.udf_GetStudios();
+
+	if not @name is null
+		insert into @tmp select * from @out where name=@name;
+	else
+		insert into @tmp select * from @out;
+
+	delete from @out
+
+	if not @id is null
+		insert into @out select * from @tmp where id=@id;
 	else
 		insert into @out select * from @tmp;
 
 	delete from @tmp;
 
 	select * from @out;
+	
 END
 go

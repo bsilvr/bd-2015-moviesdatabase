@@ -9,14 +9,14 @@
 
     <Grid Height="500" Margin="10,12,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="1000" Grid.RowSpan="7" Grid.ColumnSpan="7" Background="LightGray">
         <Label Content="Search Studios:" FontSize="40" FontWeight="Bold" HorizontalAlignment="Left" Margin="139,28,0,0" VerticalAlignment="Top"/>
-        <Label Content="ID: " HorizontalAlignment="Left" Margin="92,125,0,0" VerticalAlignment="Top"/>
-        <Label Content="Name: " HorizontalAlignment="Left" Margin="71,173,0,0" VerticalAlignment="Top"/>
-        <Label Content="Location: " HorizontalAlignment="Left" Margin="58,213,0,0" VerticalAlignment="Top"/>
+        <Label Content="ID: " HorizontalAlignment="Left" Margin="92,138,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name: " HorizontalAlignment="Left" Margin="71,178,0,0" VerticalAlignment="Top"/>
+        <Label Content="Location: " HorizontalAlignment="Left" Margin="58,209,0,0" VerticalAlignment="Top"/>
 
 
-        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="142,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
-        <TextBox Name="name" HorizontalAlignment="Left" Height="23" Margin="142,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
-        <ComboBox Name="location" HorizontalAlignment="Left" Margin="139,217,0,0" VerticalAlignment="Top" Width="204"/>
+        <TextBox Name="id" HorizontalAlignment="Left" Height="23" Margin="142,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
+        <TextBox Name="name" HorizontalAlignment="Left" Height="23" Margin="142,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204"/>
+        <TextBox Name="location" HorizontalAlignment="Left" Margin="142,213,0,0" VerticalAlignment="Top" Width="204"/>
 
 
         <DataGrid Name="search_result" IsReadOnly="True" HorizontalAlignment="Left" Margin="449,125,0,0" VerticalAlignment="Top" Height="343" Width="517">
@@ -28,4 +28,3 @@
 
     </Grid>
 </Page>
-

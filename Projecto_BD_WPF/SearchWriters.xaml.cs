@@ -64,21 +64,35 @@ namespace Projecto_BD_WPF
 
 
             char[] d = { ':', '-', '/' };
-            string wSSN = ssn.Text;
             string wName = name.Text;
             string wRank = rank.Text;
 
-            string[] wBdate = birth_date.SelectedDate.Value.ToShortDateString().Split(d);
+            DateTime wBdate = new DateTime(1, 1, 1);
+
+            if (birth_date != null && birth_date.Text != "")
+            {
+                int year, month, day;
+                string[] dates = new string[3];
+                dates = birth_date.Text.Split(d);
+                year = Convert.ToInt32(dates[2]);
+                month = Convert.ToInt32(dates[1]);
+                day = Convert.ToInt32(dates[0]);
+
+                if (year > 20)
+                    year += 1900;
+                else
+                    year += 2000;
+
+                wBdate = new DateTime(year, month, day);
+            }
 
             cmd = new SqlCommand(searchWriters, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            if (wSSN != "")
-                cmd.Parameters.AddWithValue("@ssn", wSSN);
             if (wName != "")
                 cmd.Parameters.AddWithValue("@name", wName);
-            if (wBdate != null)
-                cmd.Parameters.AddWithValue("@bdate", wBdate);
+            if (wBdate.ToString("u") != "0001-01-01 00:00:00Z")
+                cmd.Parameters.AddWithValue("@bdate", wBdate.ToString("u"));
             if (wRank != "")
                 cmd.Parameters.AddWithValue("@rank", wRank);
 
@@ -95,7 +109,6 @@ namespace Projecto_BD_WPF
 
         private void clear_Click(object sender, RoutedEventArgs e)
         {
-            ssn.Text = "";
             name.Text = "";
             birth_date.SelectedDate = null;
             rank.Text = "";
