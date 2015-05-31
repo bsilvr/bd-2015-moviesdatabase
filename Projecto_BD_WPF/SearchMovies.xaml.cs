@@ -178,6 +178,7 @@ namespace Projecto_BD_WPF
             {
                 s.IsChecked = false;                
             }
+            LoadData("SELECT * from movies.udf_GetMovies()");
         }
     }
 }

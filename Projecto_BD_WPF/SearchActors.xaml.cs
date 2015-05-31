@@ -111,6 +111,7 @@ namespace Projecto_BD_WPF
             name.Text = "";
             birth_date.Text = "";
             rank.Text = "";
+            LoadData("SELECT * from movies.udf_GetActors()");
         }
     }
 }

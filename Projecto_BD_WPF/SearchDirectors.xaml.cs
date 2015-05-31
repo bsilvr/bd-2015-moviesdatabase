@@ -137,8 +137,9 @@ namespace Projecto_BD_WPF
         {
             movie.Text = "";
             name.Text = "";
-            date.SelectedDate = null;
+            date.Text = "";
             rank.Text = "";
+            LoadData("SELECT * from movies.udf_GetDirectors()");
         }
     }
 }

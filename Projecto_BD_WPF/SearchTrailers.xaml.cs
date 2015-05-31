@@ -126,6 +126,7 @@ namespace Projecto_BD_WPF
             language.Text = "";
             Year.Text = "";
             movie.Text = "";
+            LoadData("SELECT * from movies.udf_GetTrailers()");
         }
     }
 }

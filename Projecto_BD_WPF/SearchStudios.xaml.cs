@@ -91,6 +91,7 @@ namespace Projecto_BD_WPF
         {
             name.Text = "";
             location.Text = "";
+            LoadData("SELECT * from movies.udf_GetStudios()");
         }
     }
 }

@@ -152,3 +152,6 @@ Z:\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabas
 Z:\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\Projecto_BD_WPF.g.resources
 Z:\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\Projecto_BD_WPF.Properties.Resources.resources
 Z:\Dropbox\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\Projecto_BD_WPF.csproj.GenerateResource.Cache
+X:\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\bin\Debug\Projecto_BD_WPF.exe.config
+X:\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\Projecto_BD_WPF.exe
+X:\Universidade\3Ano\2Semestre\BD\Pratica\Projecto\bd-2015-moviesdatabase\Projecto_BD_WPF\obj\Debug\Projecto_BD_WPF.pdb

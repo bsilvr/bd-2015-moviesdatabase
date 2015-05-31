@@ -123,6 +123,7 @@ namespace Projecto_BD_WPF
             movie.Text = "";
             type.Text = "";
             year.Text = "";
+            LoadData("SELECT * from movies.udf_GetAwards()");
         }
     }
 }

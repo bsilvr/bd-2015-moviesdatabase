@@ -119,6 +119,7 @@ namespace Projecto_BD_WPF
             birth_date.Text = "";
             email.Text = "";
             country.Text = "";
+            LoadData("SELECT * from movies.udf_GetUsers()");
         }
     }
 }
